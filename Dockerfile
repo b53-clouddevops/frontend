@@ -1,7 +1,5 @@
-FROM         nginx
-RUN          rm -rf /usr/share/nginx/html/* /etc/nginx/conf.d/default.conf
-COPY         docker/roboshop.conf /etc/nginx/conf.d/roboshop.conf
+FROM        nginx 
+RUN         rm -rf /usr/share/nginx/html/*   /etc/nginx/conf.d/default.conf
+COPY        docker/roboshop.conf /etc/nginx/conf.d/roboshop.conf
 # COPY        docker/nginx.conf /etc/nginx/nginx.conf
-COPY         . /usr/share/nginx/html/
-WORKDIR      /usr/share/nginx/html/
-COPY         static/* .
+COPY        . /usr/share/nginx/html/  
