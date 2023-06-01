@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: frontend:latest 834725375088.dkr.ecr.us-east-1.amazonaws.com/frontend:8.0.1
+        ports:
+        - containerPort: 80 
+
+--- 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+spec:
+  type: LoadBalancer
+  selector:
+   app: frontend
+  ports:
+    - protocol: TCP
+      port: 80              # Port number of the service that it has to listen on 
+      targetPort: 80        # Port number of the container that it has to forward to
